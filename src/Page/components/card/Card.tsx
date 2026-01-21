@@ -80,7 +80,7 @@ export const CardBox = ({ card }: { card: CardType }) => {
                 </Typography>
                 <Badge
                   sx={{ marginTop: "3px" }}
-                  color={card.status === "Alive" ? "success" : "error"}
+                  color={card.status === "Alive" ? "success" :card.status === "unknown" ? "warning":"error"}
                   variant="dot"
                 ></Badge>
               </Box>

@@ -1,0 +1,14 @@
+* {
+  border: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #4d5d91;
+}
+
+#root {
+  height: 100%;
+}

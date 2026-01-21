@@ -1,5 +1,6 @@
 import { Badge, Box, CardContent, CardMedia, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
+import { useState } from "react";
 
 interface CardLocation {
   name: string;
@@ -27,6 +28,8 @@ export interface CardType {
 }
 
 export const CardBox = ({ card }: { card: CardType }) => {
+  const [] = useState();
+
   console.log("card", card);
   return (
     <>

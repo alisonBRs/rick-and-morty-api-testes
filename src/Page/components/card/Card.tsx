@@ -79,8 +79,16 @@ export const CardBox = ({ card }: { card: CardType }) => {
                   </span>
                 </Typography>
                 <Badge
-                  sx={{ marginTop: "3px" }}
-                  color={card.status === "Alive" ? "success" :card.status === "unknown" ? "warning":"error"}
+                  sx={{
+                    marginTop: "3px",
+                    "& .MuiBadge-badge":
+                      card.status === "unknown"
+                        ? {
+                            backgroundColor: "#8b8b8b",
+                          }
+                        : "",
+                  }}
+                  color={card.status === "Alive" ? "success" : "error"}
                   variant="dot"
                 ></Badge>
               </Box>

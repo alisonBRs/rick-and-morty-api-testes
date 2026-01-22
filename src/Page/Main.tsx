@@ -33,11 +33,13 @@ export interface DataType {
 
 export const MainPage = () => {
   const [data, setData] = useState<DataType>({} as any);
+  const [loadingData, setLoadingData] = useState<Boolean>(true);
 
   const getData = async (nextUrl?: string) => {
     const defaultUrl = nextUrl || "https://rickandmortyapi.com/api/character";
-
+    setLoadingData(true);
     const bodyData = await axios.get(defaultUrl);
+    setLoadingData(false);
     setData(bodyData.data);
   };
 
@@ -49,7 +51,7 @@ export const MainPage = () => {
       color={"white"}
     >
       <Header data={data} getData={getData} />
-      <BodyProject data={data} getData={getData} />
+      <BodyProject data={data} getData={getData} isLoading={loadingData} />
       <Footer />
     </Box>
   );

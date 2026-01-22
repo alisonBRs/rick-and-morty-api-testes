@@ -3,7 +3,7 @@ import { Header } from "./components/Header";
 import { BodyProject } from "./components/BodyProject";
 import { Footer } from "./components/Footer";
 import axios from "axios";
-import { useState } from "react";
+import { useState, type RefObject } from "react";
 
 export interface DataType {
   info: {
@@ -34,6 +34,8 @@ export interface DataType {
 export const MainPage = () => {
   const [data, setData] = useState<DataType>({} as any);
   const [loadingData, setLoadingData] = useState<Boolean>(true);
+  const [bodyElement, setBodyElement] =
+    useState<RefObject<HTMLInputElement | null> | null>(null);
 
   const getData = async (nextUrl?: string) => {
     const defaultUrl = nextUrl || "https://rickandmortyapi.com/api/character";
@@ -50,8 +52,14 @@ export const MainPage = () => {
       height={"100%"}
       color={"white"}
     >
-      <Header data={data} getData={getData} />
-      <BodyProject data={data} getData={getData} isLoading={loadingData} />
+      <Header data={data} getData={getData} bodyElement={bodyElement} />
+
+      <BodyProject
+        data={data}
+        getData={getData}
+        isLoading={loadingData}
+        setBodyElement={setBodyElement}
+      />
       <Footer />
     </Box>
   );

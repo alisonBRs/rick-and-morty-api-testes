@@ -1,12 +1,15 @@
 import { Box, Button } from "@mui/material";
 import type { DataType } from "../Main";
+import type { RefObject } from "react";
 
 export const Header = ({
   data,
   getData,
+  bodyElement,
 }: {
   data: DataType;
   getData: (nextUrl?: string) => void;
+  bodyElement: RefObject<HTMLInputElement | null> | null;
 }) => {
   return (
     <Box>
@@ -26,9 +29,29 @@ export const Header = ({
         justifyContent={"center"}
       >
         {data.info?.prev ? (
-          <Button onClick={() => getData(data.info.prev)}>Anterior</Button>
+          <Button
+            onClick={() => {
+              getData(data.info.prev);
+              if (bodyElement?.current?.scrollTop !== 0) {
+                bodyElement?.current?.scrollTo(0, 0);
+              }
+            }}
+          >
+            Anterior
+          </Button>
         ) : null}
-        <Button onClick={() => getData(data.info.next)}>Próximo</Button>
+
+        <Button
+          onClick={() => {
+            getData(data.info.next);
+
+            if (bodyElement?.current?.scrollTop !== 0) {
+              bodyElement?.current?.scrollTo(0, 0);
+            }
+          }}
+        >
+          Próximo
+        </Button>
       </Box>
     </Box>
   );
